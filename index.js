@@ -30,19 +30,14 @@ http
       var chuvi = () => {
         return (parseInt(q.ipA) + parseInt(q.ipB)) * 2;
       };
-      fs.readFile("./view/result.html", { encoding: "utf-8" }, (err, data) => {
-        res.write(data, () => {
-          return chuvi();
-        });
-        res.end();
-      });
-
+      res.write("<h2>Result:\n" + chuvi() + "</h2>");
+      res.end();
     } else if (urlName == "/caldientich") {
       var q = url.parse(req.url, true).query;
       var dt = () => {
         return parseInt(q.ipA) * parseInt(q.ipB);
       };
-      res.write("<span>dien tich la: </span>" + dt());
+      res.write("<h2>Result:\n" + dt() + "</h2>");
       res.end();
     }
   })

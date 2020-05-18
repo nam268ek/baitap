@@ -37,21 +37,21 @@ http
           })
           .write();
       } else {
-        for (items in data) {
-          if (items.mssv == q.mssv) {
-            res.write("The data has been added before.");
+        for (let i = 0; i < data.length; i++) {
+          if (
+            q.mssv == data[i].mssv &&
+            q.name == data[i].name &&
+            q.class == data[i].class &&
+            q.subject == data[i].subject
+          ) {
+            res.write("Error!");
             res.end();
-          } else {
-            db.get("students")
-              .push({
-                mssv: q.mssv,
-                name: q.name,
-                class: q.class.toLocaleUpperCase(),
-                subject: q.subject,
-              })
-              .write();
           }
+          res.write("Error!");
+          res.end();
         }
+        res.write("Error!");
+        res.end();
       }
 
       // Gửi dữ liệu vào localStorage

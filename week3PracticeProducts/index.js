@@ -33,6 +33,7 @@ http
         newArr.map((data) => {
           res.write("<br>" + data.name);
         });
+        res.write("<br><a href=\"/\">Home</a>")
         res.end();
       });
     }

@@ -25,11 +25,13 @@ http
         if (err) throw err;
         var obj = JSON.parse(data);
         res.write("<h1>Product Name:</h1>");
-        obj.map((items) => {
-          if (items.name == product.search) {
-            res.write("<br>" + items.name);
-            res.end();
-          }
+        var newArr = obj.filter((sp) => {
+          return (
+            sp.name.toLowerCase().indexOf(product.search.toLowerCase()) !== -1
+          );
+        });
+        newArr.map((data) => {
+          res.write("<br>" + data.name);
         });
         res.end();
       });

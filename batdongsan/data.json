@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "ma": "59d934b1-e678-4653-a0d0-fe2cd0967477",
+      "name": "Domainer",
+      "vitri": "96 Park Meadow Way",
+      "gia": "$7.76"
+    },
+    {
+      "ma": "4c132a84-0856-488d-b4af-0b367aef5cdb",
+      "name": "Viva",
+      "vitri": "2 Coolidge Crossing",
+      "gia": "$3.01"
+    },
+    {
+      "ma": "47975ccf-64f5-431c-8b60-cf9edb94ab45",
+      "name": "Subin",
+      "vitri": "1 Briar Crest Avenue",
+      "gia": "$3.66"
+    }
+  ]
+}

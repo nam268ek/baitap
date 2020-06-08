@@ -2,7 +2,6 @@ const express = require("express");
 
 
 const app = express();
-var fs = require("fs");
 var bdsRouter = require("./routers/bds.route.js");
 
 app.use(express.static("public"));

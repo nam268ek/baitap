@@ -1,0 +1,20 @@
+extends ../views/common.pug
+block content
+ form(action="" method="POST")
+  .form-row
+    .form-group.col-md-6
+      label Name
+      input.form-control(type='text', name="flightname", placeholder='Name flight')
+  .form-row
+    .form-group.col-md-6
+      label Depart
+      input.form-control(type='text', name="depart", placeholder='Depart flight')
+  .form-row
+    .form-group.col-md-6
+      label Arrive
+      input.form-control(type='text', name="arrive", placeholder='Arrive flight')
+  .form-row
+    .form-group.col-md-6
+      label Flights Date
+      input.form-control(type='date', name="flightDate", placeholder='Flight Date')
+  button.btn.btn-primary(type='submit') Add

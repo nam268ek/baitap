@@ -1,7 +1,8 @@
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
-const adapter = new FileSync("data.json");
+const adapter = new FileSync("flights.json");
 const db = low(adapter);
-db.defaults({ products: [] }).write();
 
-module.exports = bsd;
+db.defaults({ flights: [] }).write();
+
+module.exports = db;

@@ -41,15 +41,10 @@ module.exports.viewFlightDate = (req, res) => {
 };
 
 module.exports.viewFlightDateResult = (req, res) => {
-  
-  let obj = db.get("flights").value();
-
-  obj = obj.filter((item) => {
-    if(item.flightDate === req.query.flightDate) {
-      return true;
-    }
-  });
-  console.log(obj);
+  let obj = db
+    .get("flights")
+    .value()
+    .filter((item) => item.flightdate === req.query.flightDate);
   res.render("home", {
     flights: obj,
   });

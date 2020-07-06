@@ -1,3 +1,5 @@
+
 module.exports.ejs = (req, res) => {
-    res.render("pages/index");
+  
+  res.render("pages/index");
 };

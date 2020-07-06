@@ -15,8 +15,12 @@ let db = new sqlite3.Database(DBSOURCE, (err)=>{
     console.log("Connected DBSOURCE");
 });
 
-
 app.use(express.static("public"));
+app.use("views engine", "ejs");
+
+app.get("/", (req,res) =>{
+  res.render("index");
+});
 
 app.get("/api/products", (req, res, next) => {
   var products = "SELECT * FROM products";

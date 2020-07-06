@@ -1,8 +1,8 @@
 extends ../views/common.pug
 block content
-    form(action="/flight/viewDate/result" method="GET")
+    form(action="/xe/search/result" method="GET")
         .form-row
             .form-group.col-md-6
-                label Flights Date
-                input.form-control(type='date', name="flightDate", placeholder='Flight Date')
+                label Xe
+                input.form-control(type='text', name="tenxe", placeholder='tenxe')
         button.btn.btn-primary(type='submit') View

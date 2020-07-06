@@ -1,20 +1,28 @@
 extends ../views/common.pug
 block content
- form(action="" method="POST")
+ form(action="" method="GET")
   .form-row
     .form-group.col-md-6
       label Name
-      input.form-control(type='text', name="flightname", placeholder='Name flight')
+      input.form-control(type='text', name="maxe", placeholder='ma xe')
   .form-row
     .form-group.col-md-6
       label Depart
-      input.form-control(type='text', name="depart", placeholder='Depart flight')
+      input.form-control(type='text', name="tenxe", placeholder='tenxe')
   .form-row
     .form-group.col-md-6
       label Arrive
-      input.form-control(type='text', name="arrive", placeholder='Arrive flight')
+      input.form-control(type='text', name="soxe", placeholder='soxe')
   .form-row
     .form-group.col-md-6
-      label Flights Date
-      input.form-control(type='date', name="flightDate", placeholder='Flight Date')
+      label hang san xuat
+      input.form-control(type='text', name="hangsx", placeholder='hang san xuat')
+  .form-row
+    .form-group.col-md-6
+      label mau xe
+      input.form-control(type='text', name="mauxe", placeholder='mau xe')
+  .form-row
+    .form-group.col-md-6
+      label ten chu
+      input.form-control(type='text', name="tenchu", placeholder='ten chu')
   button.btn.btn-primary(type='submit') Add

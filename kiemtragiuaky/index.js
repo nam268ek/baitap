@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
-var db = require("./models/flights.model");
-var flightsRouters = require("./routers/flights.route");
+var db = require("./models/xe.model");
+var xesRouters = require("./routers/xe.route");
 var bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
@@ -13,11 +13,11 @@ app.set("views", "./views");
 
 app.get("/", (req, res) => {
   res.render("home", {
-    flights: db.get("flights").value(),
+    xe: db.get("xe").value(),
   });
 });
 
-app.use("/flight", flightsRouters);
+app.use("/xe", xesRouters);
 
 app.listen(8080, () => {
   console.log("----Connected----");

@@ -1,40 +1,60 @@
 var express = require("express");
+var sqlite3 = require("sqlite3").verbose();
+var bodyParser = require("body-parser");
+var randomstring = require("randomstring");
+
 var app = express();
 var port = 8080;
-//var db = require("./models/database.model.js");
-var sqlite3 = require("sqlite3").verbose();
-//var md5 = require("md5");
 
-const DBSOURCE = "./models/db.sqlite";
+app.set("view engine", "ejs");
 
-let db = new sqlite3.Database(DBSOURCE, (err)=>{
-    if(err) {
-        console.log(err.message);
-        throw err
-    }
-    console.log("Connected DBSOURCE");
-});
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
-app.use("views engine", "ejs");
 
-app.get("/", (req,res) =>{
-  res.render("index");
+let db = new sqlite3.Database("./db.sqlite", (err) => {
+  if (err) {
+    console.log(err.message);
+    throw err;
+  }
+  console.log("Connected DBSOURCE");
 });
 
-app.get("/api/products", (req, res, next) => {
-  var products = "SELECT * FROM products";
-  var params = [];
-  db.all(products, params, (err, rows) => {
-    if (err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-        "message":"success",
-        "data":rows
-    })
+app.get("/", (req, res) => {
+  res.render("index", {
+    products: undefined,
   });
+});
+
+app.get("/products", (req, res, next) => {
+  db.all("SELECT * FROM products", (err, rows) => {
+    res.render("index", {
+      products: rows,
+    });
+  });
+});
+
+app.get("/products/search", (req, res) => {
+  var productName = req.query.search;
+  var search = `SELECT * FROM products WHERE productName = "${productName}"`;
+  db.all(search, (err, rows) => {
+    res.render("index", {
+      products: rows,
+    });
+  });
+});
+
+app.get("/products/add", (req, res, next) => {
+  res.render("addProducts");
+});
+app.post("/products/add", (req, res, next) => {
+  const productId = randomstring.generate(32);
+  const insert = `INSERT into products values('${productId}','${req.body.productName}', '${req.body.supplier}', ${req.body.origin}, '${req.body.expirydate}')`;
+  db.run(insert, (err) => {
+    if (err) throw err;
+    console.log("Success");
+  });
+  res.redirect("/products");
 });
 
 app.listen(port, () => {
